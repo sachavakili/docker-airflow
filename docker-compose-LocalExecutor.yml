@@ -2,6 +2,8 @@ version: '3.7'
 services:
     postgres:
         image: postgres:9.6
+        ports:
+            - 5432:5432
         environment:
             - POSTGRES_USER=airflow
             - POSTGRES_PASSWORD=airflow
