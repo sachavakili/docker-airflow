@@ -11,7 +11,7 @@ args = {
 }
 
 dag = DAG(
-    dag_id="example_python_operator",
+    dag_id="health_analytics",
     default_args=args,
     schedule_interval=None,
     start_date=days_ago(2),
