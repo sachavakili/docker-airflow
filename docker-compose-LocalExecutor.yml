@@ -13,6 +13,8 @@ services:
             options:
                 max-size: 10m
                 max-file: "3"
+        networks:
+          - health_analytics
 
     webserver:
         container_name: airflow
@@ -23,6 +25,8 @@ services:
         environment:
             - LOAD_EX=n
             - EXECUTOR=Local
+            - POSTGRES_USER=airflow
+            - POSTGRES_PASSWORD=airflow
         logging:
             options:
                 max-size: 10m
@@ -40,7 +44,10 @@ services:
             interval: 30s
             timeout: 30s
             retries: 3
+        networks:
+          - health_analytics
 
 networks:
   health_analytics:
+    name: health_analytics
     driver: bridge
