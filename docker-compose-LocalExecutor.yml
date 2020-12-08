@@ -4,7 +4,7 @@ services:
         container_name: postgres
         image: postgres:9.6
         ports:
-            - 5432:5432
+            - 5435:5435
         environment:
             - POSTGRES_USER=airflow
             - POSTGRES_PASSWORD=airflow
@@ -15,6 +15,7 @@ services:
                 max-file: "3"
         networks:
           - health_analytics
+        command: -p 5435
 
     webserver:
         container_name: airflow
@@ -27,6 +28,7 @@ services:
             - EXECUTOR=Local
             - POSTGRES_USER=airflow
             - POSTGRES_PASSWORD=airflow
+            - POSTGRES_PORT=5435
         logging:
             options:
                 max-size: 10m
